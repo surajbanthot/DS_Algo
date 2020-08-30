@@ -1,4 +1,5 @@
 #include <iostream>
+// vector is contiguous memory allocator
 #include <vector>
 #include <algorithm>
 #include <filesystem>
