@@ -58,3 +58,28 @@ void vectorDemo()
     // for(auto &c: A)
     // cout<<++c<<endl; 
 }
+
+int main()
+{
+
+    // sequence containers
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(20);
+
+    // cout<<"Size of Vector v "<<v.size()<<endl;
+
+    // v.clear();
+
+    // cout<<"size after clearing the vector "<<v.size();
+
+    vector<int>::iterator itr;
+    // itr=v.begin();
+  
+    // cout<<*(itr+1);
+
+    for(auto x:v)
+    cout<<x<<endl;
+
+    return 0;
+}
