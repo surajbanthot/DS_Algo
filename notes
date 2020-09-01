@@ -10,3 +10,17 @@ get(index)
 search(key)
 
 
+Recursion:
+
+*) has descending and ascending phase compared to loop having ascending phase
+
+Time complexity:
+
+Depends on N so O(n)
+
+Types of Recursion:
+1.Tail Recursion -  takes up O(n) space compared to it's alternative loops which takes up O(1) space
+2.Head Recursion
+3.Tree Recursion
+4.Indirect Recursion
+5.Nested Recursion
