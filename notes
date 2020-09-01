@@ -20,7 +20,9 @@ Depends on N so O(n)
 
 Types of Recursion:
 1.Tail Recursion -  takes up O(n) space compared to it's alternative loops which takes up O(1) space
-2.Head Recursion
-3.Tree Recursion
-4.Indirect Recursion
-5.Nested Recursion
+2.Head Recursion - Recursive function call is set at first in the same recursive function
+3.Tree Recursion - Multiple recursive function calls within the function is Tree Recursion
+4.Indirect Recursion - two  recursive functions specified within each other is a Indirect recursion
+5.Nested Recursion - fun(fun(n+11));
+
+
