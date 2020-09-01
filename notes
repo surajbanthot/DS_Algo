@@ -1,0 +1,12 @@
+abstract Datatypes
+
+list:
+
+add(element)/append(element)
+add(index, element)/insert(index, element)
+remove(index)
+set(index,element)/Replace(index, element)
+get(index)
+search(key)
+
+
