@@ -25,4 +25,6 @@ Types of Recursion:
 4.Indirect Recursion - two  recursive functions specified within each other is a Indirect recursion
 5.Nested Recursion - fun(fun(n+11));
 
+memoization is storing the  repitative results in an array for recursive
+
 
