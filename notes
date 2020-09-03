@@ -32,4 +32,9 @@ tower of hanoi is a inorder traversal
 To find the element in a memory(Mapping) for a two dimensional array of size A[m][n] = L0+[j*m+i]+w; //Row Major Formula
 L0+[j*n+j]+w //column major Formula
 
+Cases of a Character
 
+A-65  a-97  diff=32
+.       .
+.       .
+Z-90  z=122
