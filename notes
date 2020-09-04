@@ -38,3 +38,6 @@ A-65  a-97  diff=32
 .       .
 .       .
 Z-90  z=122
+
+
+Lower Triangular Matrix - Row Major Matrix formula: Index(A[i][j])=[i(i-1)/2]+j-1;
