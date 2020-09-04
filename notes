@@ -43,3 +43,12 @@ Z-90  z=122
 Lower Triangular Matrix - 
 Row Major Matrix formula: Index A[i][j])=[i(i-1)/2]+j-1;
 column Major Matrix formula: Index A[i][j]=[n(j-1)-(j-2)(j-1)/2]+(i-j);
+
+Tri-Diagonal Matrix size required in a single array is 3n-2
+
+Index(A[i][j])
+case 1: if i-j=1 index=i-1
+case 2: if i-j=0 index=n-1+i-1
+case 3; if i-j=-1 index=2n-1+i-1
+
+Toplitz Matrix: elements in a Diagonal are same 
