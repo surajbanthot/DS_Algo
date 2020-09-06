@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include<stdio.h>
 #define MIN_INT -32768
 using namespace std;
 
@@ -28,8 +29,88 @@ public:
     int search(int key);
     void Insert(int pos, int x);
     void insertLast(int x);
+    void insertSortedList(int x);
+    int Delete(int pos);
+    bool isSorted();
     // ~LinkedList();
 };
+
+bool LinkedList::isSorted()
+{
+    Node *p=first;
+    int x=-32768;
+    while(p!=NULL)
+    {
+        if(p->data<x)
+        return false;
+        x=p->data;
+        p=p->next;
+    }
+return true;
+}
+
+int LinkedList::Delete(int pos)
+{
+    Node *p, *q;
+    int x = -1, i;
+    if (pos == 1)
+    {
+        x = first->data;
+        p = first;
+        first = first->next;
+        delete p;
+    }
+    else
+    {
+        p = first;
+        q = NULL;
+        for (i = 0; i < (pos - 1) && (p); i++)
+        {
+            q = p;
+            p = p->next;
+        }
+        if (p)
+        {
+            q->next = p->next;
+            x = p->data;
+            delete p;
+        }
+    }
+    return x;
+}
+
+void LinkedList::insertSortedList(int x)
+{
+    Node *t;
+    t = new Node;
+    t->data = x;
+    t->next = NULL;
+    Node *p, *q;
+    p = first;
+    q = NULL;
+    if (first == NULL)
+    {
+        first = t;
+    }
+    else
+    {
+        while (p && p->data < x)
+        {
+            q = p;
+            p = p->next;
+        }
+        if (p == first)
+        {
+            t->next = first;
+            first = t;
+        }
+        else
+        {
+            t->next = q->next;
+            q->next = t;
+        }
+    }
+}
 
 void LinkedList::insertLast(int x)
 {
@@ -162,8 +243,8 @@ LinkedList::LinkedList(int A[], int n)
 
 int main()
 {
-    int A[] = {3, 5, 6, 7};
-    LinkedList l;
+    int A[] = {3, 10, 6, 57};
+    LinkedList l(A, 4);
 
     //Max element in list
     // int max_ele = l.max();
@@ -187,9 +268,20 @@ int main()
     // l.Insert(0, 1);
     // l.Insert(1, 20);
     // l.Insert(0, 34);
-
+  
     // l.insertLast(20);
+
+    // l.insertSortedList(60);
+
+    // l.Delete(3);
+
+    // if(l.isSorted())
+    // cout<<"Linked List is Sorted\n";
+    // else 
+    // cout<<"List is not sorted\n";
+
     
+
     l.Display();
     return 0;
-}
+} 
