@@ -15,15 +15,18 @@ class LinkedList
 {
 private:
     Node *first;
+    Node *second;
     Node *last;
 
 public:
     LinkedList()
     {
         first = NULL;
+        second=NULL;
         last = NULL;
     }
     LinkedList(int A[], int n);
+    LinkedList2(int B[], int n);
     int max();
     void Display();
     int search(int key);
@@ -34,8 +37,58 @@ public:
     bool isSorted();
     void deleteDuplicate();
     void ReverseList();
+    void Merging_list(int A[],int B[]);
     // ~LinkedList();
 };
+
+LinkedList::LinkedList(int A[], int n)
+{
+    Node *t;
+    int i = 0;
+
+    first = new Node;
+    first->data = A[0];
+    first->next = NULL;
+    last = first;
+
+    for (i = 1; i < n; i++)
+    {
+        t = new Node;
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+
+LinkedList::LinkedList2(int B[], int n)
+{
+    Node *t;
+    int i = 0;
+
+    second = new Node;
+    second->data = B[0];
+    second->next = NULL;
+    last = second;
+
+    for (i = 1; i < n; i++)
+    {
+        t = new Node;
+        t->data = B[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+
+
+
+
+void LinkedList::Merging_list(int A[], int B[])
+{
+
+
+}
 
 //Iterative method and extra array
 
@@ -294,29 +347,12 @@ void LinkedList::Display()
     }
     cout << endl;
 }
-LinkedList::LinkedList(int A[], int n)
-{
-    Node *t;
-    int i = 0;
 
-    first = new Node;
-    first->data = A[0];
-    first->next = NULL;
-    last = first;
-
-    for (i = 1; i < n; i++)
-    {
-        t = new Node;
-        t->data = A[i];
-        t->next = NULL;
-        last->next = t;
-        last = t;
-    }
-}
 
 int main()
 {
     int A[] = {3, 10, 6, 6, 78, 45, 57};
+    int B[] = {23,45,3,56,78,4};
     LinkedList l(A, 7);
 
     //Max element in list
@@ -355,7 +391,7 @@ int main()
 
     // l.deleteDuplicate();
 
-    l.ReverseList();
+    // l.ReverseList();
 
     l.Display();
 
