@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include<stdio.h>
+#include <stdio.h>
 #define MIN_INT -32768
 using namespace std;
 
@@ -32,21 +32,94 @@ public:
     void insertSortedList(int x);
     int Delete(int pos);
     bool isSorted();
+    void deleteDuplicate();
+    void ReverseList();
     // ~LinkedList();
 };
 
+//Iterative method and extra array
+
+// void LinkedList::ReverseList()
+// {
+//     Node *p;
+//     p = first;
+//     int size = 0, i = 0;
+//     while (p != NULL)
+//     {
+//         size++;
+//         p = p->next;
+//     }
+//     p=first;
+//     int A[size] = {0};
+
+//     while (p != NULL)
+//     {
+//         A[i] = p->data;
+//         p = p->next;
+//         i++;
+//     }
+//     p=first;
+//     i--;
+//     while (p != NULL)
+//     {
+//         p->data = A[i--];
+//         p = p->next;
+//     }
+//     p=first;
+// }
+
+//Reversing a linked list using sliding pointers
+
+void LinkedList::ReverseList()
+{
+    Node *q, *p, *r;
+    p = first;
+    q = r = NULL;
+
+    while (p != NULL)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    first = q;
+}
+
+void LinkedList::deleteDuplicate()
+{
+    Node *p, *q;
+    p = first;
+    q = p->next;
+    while (q != NULL)
+    {
+        if (p->data != q->data)
+        {
+            p = q;
+            q = q->next;
+        }
+        else
+        {
+            p->next = q->next;
+            cout << "Deleted Element " << q->data << "\n";
+            delete q;
+            q = p->next;
+        }
+    }
+}
+
 bool LinkedList::isSorted()
 {
-    Node *p=first;
-    int x=-32768;
-    while(p!=NULL)
+    Node *p = first;
+    int x = -32768;
+    while (p != NULL)
     {
-        if(p->data<x)
-        return false;
-        x=p->data;
-        p=p->next;
+        if (p->data < x)
+            return false;
+        x = p->data;
+        p = p->next;
     }
-return true;
+    return true;
 }
 
 int LinkedList::Delete(int pos)
@@ -243,8 +316,8 @@ LinkedList::LinkedList(int A[], int n)
 
 int main()
 {
-    int A[] = {3, 10, 6, 57};
-    LinkedList l(A, 4);
+    int A[] = {3, 10, 6, 6, 78, 45, 57};
+    LinkedList l(A, 7);
 
     //Max element in list
     // int max_ele = l.max();
@@ -268,7 +341,7 @@ int main()
     // l.Insert(0, 1);
     // l.Insert(1, 20);
     // l.Insert(0, 34);
-  
+
     // l.insertLast(20);
 
     // l.insertSortedList(60);
@@ -277,11 +350,14 @@ int main()
 
     // if(l.isSorted())
     // cout<<"Linked List is Sorted\n";
-    // else 
+    // else
     // cout<<"List is not sorted\n";
 
-    
+    // l.deleteDuplicate();
+
+    l.ReverseList();
 
     l.Display();
+
     return 0;
-} 
+}
