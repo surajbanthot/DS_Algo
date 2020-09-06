@@ -63,10 +63,10 @@ Methods to improve linear search
     // t->data = x;
     // t->next = NULL;
     cout<<"within insertlast method\n";
-// //     if (first == NULL)
-// //         first = last = t;
-// //     else
-// //     {
-// //         last->next = t;
-// //         last = t;
-// //     }
+     if (first == NULL)
+         first = last = t;
+    else
+     {
+        last->next = t;
+        last = t;
+    }
