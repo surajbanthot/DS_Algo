@@ -52,3 +52,21 @@ case 2: if i-j=0 index=n-1+i-1
 case 3; if i-j=-1 index=2n-1+i-1
 
 Toplitz Matrix: elements in a Diagonal are same 
+
+Methods to improve linear search 
+1. Transposition where element found is moved to a i-1 position so it can be found in next i-1 iterations ( use a q poiinter that will be pointing to a i-1 element to change the element once found)
+2.Move to Head: where element found is moved to first position so the same element can be found in O(1) time. 
+
+
+  // Node *t,*p;
+    // p=first;
+    // t->data = x;
+    // t->next = NULL;
+    cout<<"within insertlast method\n";
+// //     if (first == NULL)
+// //         first = last = t;
+// //     else
+// //     {
+// //         last->next = t;
+// //         last = t;
+// //     }
