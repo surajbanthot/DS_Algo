@@ -1,8 +1,6 @@
-#include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
-#define MIN_INT -32768
+#include <bits/stdc++.h>
 using namespace std;
+#define MIN_INT -32768
 
 class Node
 {
@@ -14,363 +12,250 @@ public:
 class LinkedList
 {
 public:
-    LinkedList()
+    void createfrmArray(int A[], int n)
     {
-        first = NULL;
-        second=NULL;
-        last = NULL;
+        int i;
+        Node *last;
+        Node *first = new Node();
+        first->data = A[0];
+        last = first;
+        Node *t = new Node();
+        for (i = 1; i < n; i++)
+        {
+            t->data = A[i];
+            t->next = NULL;
+            last->next = t;
+            last = t;
+        }
     }
-    LinkedList(int A[], int n);
-   
-    int max();
-    void Display();
-    int search(int key);
-    void Insert(int pos, int x);
-    void insertLast(int x);
-    void insertSortedList(int x);
-    int Delete(int pos);
-    bool isSorted();
-    void deleteDuplicate();
-    void ReverseList();
-    void Merging_list(int A[],int B[]);
-    // ~LinkedList();
+
+    void push(Node **head_ref, int new_data)
+    {
+
+        Node *new_node = new Node();
+        new_node->data = new_data;
+        new_node->next = (*head_ref);
+        (*head_ref) = new_node;
+    }
+
+    void printlist(Node *node)
+    {
+        while (node != NULL)
+        {
+            cout << " " << node->data;
+            node = node->next;
+        }
+    }
+
+    void insertAfter(Node *prev_node, int new_data)
+    {
+        if (prev_node == NULL)
+        {
+            cout << "The given previous Node cannot be NULL\n";
+            return;
+        }
+
+        Node *new_node = new Node();
+
+        new_node->data = new_data;
+        new_node->next = prev_node->next;
+        prev_node->next = new_node;
+    }
+    void append(Node **head_ref, int new_data)
+    {
+        Node *new_node = new Node();
+        new_node->data = new_data;
+        new_node->next = NULL;
+
+        Node *last = *head_ref;
+
+        if (*head_ref == NULL)
+        {
+            *head_ref = new_node;
+            return;
+        }
+
+        while (last->next != NULL)
+        {
+            last = last->next;
+        }
+
+        last->next = new_node;
+        return;
+    }
+
+    void deleteNode(Node **head_ref, int key)
+    {
+        Node *temp = *head_ref;
+        Node *prev;
+        if (temp != NULL && temp->data == key)
+        {
+            *head_ref = temp->next;
+            free(temp);
+            return;
+        }
+        while (temp != NULL && temp->data != key)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        if (temp == NULL)
+            return;
+
+        prev->next = temp->next;
+        free(temp);
+    }
+
+    void DeleteNodeat(Node **head_ref, int pos)
+    {
+        if (*head_ref == NULL)
+            return;
+
+        Node *temp = *head_ref;
+        if (pos == 0)
+        {
+            *head_ref = temp->next;
+            free(temp);
+            return;
+        }
+
+        for (int i = 0; temp != NULL && i < pos - 1; i++)
+            temp = temp->next;
+
+        if (temp == NULL || temp->next == NULL)
+            return;
+
+        Node *next = temp->next->next;
+        free(temp->next);
+
+        temp->next = next;
+    }
+
+    void RevDisplay(Node *p)
+    {
+        if (p != NULL)
+        {
+            RevDisplay(p->next);
+            cout << p->data << " ";
+        }
+    }
+
+    int max(Node *p)
+    {
+        //Iterative method
+        // int m=-32768;
+        // while(p)
+        // {
+        //     if(p->data>m)
+        //     m=p->data;
+        //     p=p->next;
+        // }
+        // return (m);
+
+        //recursive method
+
+        int x = 0;
+        if (p == 0)
+        {
+            return MIN_INT;
+        }
+        else
+        {
+            x = max(p->next);
+            if (x > p->data)
+                return x;
+            else
+                return p->data;
+        }
+    }
+
+    Node *Search(Node **head, int key)
+    {
+        // // Iterative Method
+        // while (p != NULL)
+        // {
+        //     if (key == p->data)
+        //         return (p);
+        //     p = p->next;
+        // }
+        // return NULL;
+
+        //Recursive Method
+        // if (p == NULL)
+        //     return NULL;
+        // if (key == p->data)
+        //     return (p);
+        // return Search(p->next, key);
+
+        struct Node *q;
+       Node *p=*head;
+        while (p != NULL)
+        {
+            if (key == p->data)
+            {
+                q->next = p->next;
+                p->next = *head;
+                *head=p;
+                return *head;
+            }
+            q = p;
+            p = p->next;
+        }
+
+        return NULL;
+    }
 };
-
-LinkedList::LinkedList(int A[], int n)
-{
-    Node *t;
-    int i = 0;
-
-    first = new Node;
-    first->data = A[0];
-    first->next = NULL;
-    last = first;
-
-    for (i = 1; i < n; i++)
-    {
-        t = new Node;
-        t->data = A[i];
-        t->next = NULL;
-        last->next = t;
-        last = t;
-    }
-}
-
-
-
-
-
-
-void LinkedList::Merging_list(int A[], int B[])
-{
-
-
-}
-
-//Iterative method and extra array
-
-// void LinkedList::ReverseList()
-// {
-//     Node *p;
-//     p = first;
-//     int size = 0, i = 0;
-//     while (p != NULL)
-//     {
-//         size++;
-//         p = p->next;
-//     }
-//     p=first;
-//     int A[size] = {0};
-
-//     while (p != NULL)
-//     {
-//         A[i] = p->data;
-//         p = p->next;
-//         i++;
-//     }
-//     p=first;
-//     i--;
-//     while (p != NULL)
-//     {
-//         p->data = A[i--];
-//         p = p->next;
-//     }
-//     p=first;
-// }
-
-//Reversing a linked list using sliding pointers
-
-void LinkedList::ReverseList()
-{
-    Node *q, *p, *r;
-    p = first;
-    q = r = NULL;
-
-    while (p != NULL)
-    {
-        r = q;
-        q = p;
-        p = p->next;
-        q->next = r;
-    }
-    first = q;
-}
-
-void LinkedList::deleteDuplicate()
-{
-    Node *p, *q;
-    p = first;
-    q = p->next;
-    while (q != NULL)
-    {
-        if (p->data != q->data)
-        {
-            p = q;
-            q = q->next;
-        }
-        else
-        {
-            p->next = q->next;
-            cout << "Deleted Element " << q->data << "\n";
-            delete q;
-            q = p->next;
-        }
-    }
-}
-
-bool LinkedList::isSorted()
-{
-    Node *p = first;
-    int x = -32768;
-    while (p != NULL)
-    {
-        if (p->data < x)
-            return false;
-        x = p->data;
-        p = p->next;
-    }
-    return true;
-}
-
-int LinkedList::Delete(int pos)
-{
-    Node *p, *q;
-    int x = -1, i;
-    if (pos == 1)
-    {
-        x = first->data;
-        p = first;
-        first = first->next;
-        delete p;
-    }
-    else
-    {
-        p = first;
-        q = NULL;
-        for (i = 0; i < (pos - 1) && (p); i++)
-        {
-            q = p;
-            p = p->next;
-        }
-        if (p)
-        {
-            q->next = p->next;
-            x = p->data;
-            delete p;
-        }
-    }
-    return x;
-}
-
-void LinkedList::insertSortedList(int x)
-{
-    Node *t;
-    t = new Node;
-    t->data = x;
-    t->next = NULL;
-    Node *p, *q;
-    p = first;
-    q = NULL;
-    if (first == NULL)
-    {
-        first = t;
-    }
-    else
-    {
-        while (p && p->data < x)
-        {
-            q = p;
-            p = p->next;
-        }
-        if (p == first)
-        {
-            t->next = first;
-            first = t;
-        }
-        else
-        {
-            t->next = q->next;
-            q->next = t;
-        }
-    }
-}
-
-void LinkedList::insertLast(int x)
-{
-    Node *t;
-    t = new Node;
-    t->data = x;
-    t->next = NULL;
-    Node *p;
-    p = first;
-    if (first == NULL)
-        first = last = t;
-    else
-    {
-        last->next = t;
-        last = t;
-    }
-}
-
-void LinkedList::Insert(int pos, int x)
-{
-    Node *t, *p;
-
-    if (pos == 0)
-    {
-        t = new Node;
-        t->data = x;
-        t->next = first;
-        first = t;
-    }
-    else if (p > 0)
-    {
-        p = first;
-        for (int i = 0; i < (pos - 1) && (p); i++)
-            p = p->next;
-        if (p)
-        {
-            t = new Node;
-            t->data = x;
-            t->next = p->next;
-            p->next = t;
-        }
-    }
-}
-
-//linear search
-// int LinkedList::search(int key)
-// {
-//     Node *p = first;
-//     int i = 1;
-//     while (p != NULL)
-//     {
-//         if (key == p->data)
-//             return i;
-//         p = p->next;
-//         i = i + 1;
-//     }
-//     return i;
-// }
-
-//Transposition method in linear search
-
-int LinkedList::search(int key)
-{
-    Node *p = first;
-    Node *q = NULL;
-    int i = 1;
-    while (p != NULL)
-    {
-        if (key == p->data)
-        {
-            q = p->next;
-            p->next = first;
-            first->next = q;
-            first = p;
-            return i;
-        }
-        q = p;
-        p = p->next;
-        i = i + 1;
-    }
-    return i;
-}
-
-int LinkedList::max()
-{
-    Node *p = first;
-    int max = p->data;
-    while (p)
-    {
-        if (p->data > max)
-        {
-            max = p->data;
-        }
-        else
-        {
-            p = p->next;
-        }
-    }
-    return max;
-}
-void LinkedList::Display()
-{
-    Node *p = first;
-    while (p)
-    {
-        cout << p->data << " ";
-        p = p->next;
-    }
-    cout << endl;
-}
-
 
 int main()
 {
-    int A[] = {3, 10, 6, 6, 78, 45, 57};
-    int B[] = {23,45,3,56,78,4};
-    LinkedList l(A, 7);
+    Node *head = NULL;
+    Node *temp;
+    LinkedList l;
+    // int A[] = {2, 3, 4, 5, 343, 54};
+    // l.createfrmArray(A, 6);
 
-    //Max element in list
-    // int max_ele = l.max();
-    // cout << "Max element within the given list " << max_ele << "\n";
+    //simillar to pushing an element into a stack
+    l.push(&head, 63);
+    l.push(&head, 53);
+    l.push(&head, 43);
+    l.push(&head, 32);
 
-    //Search element in list
-    // cout << "Enter the element to be serached \n";
-    // int key;
-    // cin >> key;
-    // int search_res = l.search(key);
-    // cout << "element found at " << search_res << endl;
+    //add's an element to the tail of the linkedList
+    l.append(&head, 58);
+    //Inserts an element after the head's next ->next as the pointer is at head->next
+    l.insertAfter(head->next, 8);
 
-    //Insert element in list at a position
-    // int pos = 0;
-    // cout << "Enter the Index at which element has to be inserted \n";
-    // cin >> pos;
-    // cout<<"Enter the element to insert at the pos "<<pos<<" ";
-    // int ele;
-    // cin>>ele;
-    // l.Insertat(pos, ele);
-    // l.Insert(0, 1);
-    // l.Insert(1, 20);
-    // l.Insert(0, 34);
+    cout << "Created Linked list is:\n";
+    l.printlist(head);
+    //Deleting an first instance of the element in by passing the key as parameter
+    l.deleteNode(&head, 6);
 
-    // l.insertLast(20);
+    //Reverse Display
+    cout << "\nRecursive  Reverse display\n";
+    l.RevDisplay(head);
 
-    // l.insertSortedList(60);
+    cout << "\nprint list\n";
+    l.printlist(head);
 
-    // l.Delete(3);
+    //Max of linked list
+    cout << "\nMaximum element within the present linked list is "
+         << l.max(head) << "\n";
 
-    // if(l.isSorted())
-    // cout<<"Linked List is Sorted\n";
-    // else
-    // cout<<"List is not sorted\n";
+    //Searching within a Liked list
+    cout << "To find the element in List: " << endl;
+    temp = l.Search(&head, 43);
 
-    // l.deleteDuplicate();
+    if (temp)
+    {
+        cout << "Element present in list element:" << temp->data;
+    }
+    else
+    {
+        cout << "Key cannot be found in list\n";
+    }
 
-    // l.ReverseList();
 
-    l.Display();
 
     return 0;
 }
