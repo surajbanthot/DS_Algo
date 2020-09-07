@@ -13,11 +13,6 @@ public:
 
 class LinkedList
 {
-private:
-    Node *first;
-    Node *second;
-    Node *last;
-
 public:
     LinkedList()
     {
@@ -26,7 +21,7 @@ public:
         last = NULL;
     }
     LinkedList(int A[], int n);
-    LinkedList2(int B[], int n);
+   
     int max();
     void Display();
     int search(int key);
@@ -61,25 +56,7 @@ LinkedList::LinkedList(int A[], int n)
     }
 }
 
-LinkedList::LinkedList2(int B[], int n)
-{
-    Node *t;
-    int i = 0;
 
-    second = new Node;
-    second->data = B[0];
-    second->next = NULL;
-    last = second;
-
-    for (i = 1; i < n; i++)
-    {
-        t = new Node;
-        t->data = B[i];
-        t->next = NULL;
-        last->next = t;
-        last = t;
-    }
-}
 
 
 

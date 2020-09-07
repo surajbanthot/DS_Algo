@@ -66,6 +66,55 @@ class LinkedList
         }
     }
 
+    void deleteNode(Node **head_ref, int key)
+    {
+        Node* temp=*head_ref;
+        Node* prev;
+        if(temp !=NULL && temp->data==key)
+        {
+            *head_ref=temp->next;
+            free(temp);
+            return;
+        }
+        while(temp !=NULL && temp->data != key)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+
+        if(temp==NULL)
+        return;
+
+        prev->next=temp->next;
+        free(temp);
+    }
+
+    void DeleteNodeat(Node** head_ref, int pos)
+    {
+        if(*head_ref==NULL)
+        return;
+
+        Node* temp =*head_ref;
+        if(pos==0)
+        {
+            *head_ref=temp->next;
+            free(temp);
+            return;
+        }
+
+        for(int i=0;temp!=NULL && i<pos-1;i++)
+        temp=temp->next;
+
+        if(temp==NULL || temp->next==NULL)
+        return;
+
+        Node* next=temp->next->next;
+        free(temp->next);
+
+        temp->next= next;
+
+    }
+
 };
 
 
@@ -97,6 +146,10 @@ int main()
       
     cout<<"Created Linked list is: ";  
     l.printList(head);  
+
+    l.deleteNode(&head, 6);
+
+    l.printList(head);
       
     return 0;  
 }  
