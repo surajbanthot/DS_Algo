@@ -189,14 +189,14 @@ public:
         // return Search(p->next, key);
 
         struct Node *q;
-       Node *p=*head;
+        Node *p = *head;
         while (p != NULL)
         {
             if (key == p->data)
             {
                 q->next = p->next;
                 p->next = *head;
-                *head=p;
+                *head = p;
                 return *head;
             }
             q = p;
@@ -204,6 +204,32 @@ public:
         }
 
         return NULL;
+    }
+
+    Node *insertAtlast(Node **head, int data)
+    {
+        Node *t = new Node();
+        t->data = data;
+        t->next = NULL;
+
+        Node *last;
+
+        if(*head==NULL)
+        {
+            t=*head;
+            return t;
+        }else
+        {
+            last=*head;
+            while(last->next!=NULL)
+            {
+                last=last->next;
+            }
+            last->next=t;
+            t->next=NULL;
+            last=t;
+            return *head;
+        }
     }
 };
 
@@ -248,14 +274,18 @@ int main()
 
     if (temp)
     {
-        cout << "Element present in list element:" << temp->data;
+        cout << "Element present in list element:" << temp->data<<"\n";
     }
     else
     {
         cout << "Key cannot be found in list\n";
     }
 
+    l.insertAtlast(&head, 87);
 
+    l.insertAtlast(&head, 56);
+
+    l.printlist(head);
 
     return 0;
 }
