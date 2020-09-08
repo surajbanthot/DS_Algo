@@ -45,6 +45,7 @@ public:
             cout << " " << node->data;
             node = node->next;
         }
+        cout << "\n";
     }
 
     void insertAfter(Node *prev_node, int new_data)
@@ -214,28 +215,178 @@ public:
 
         Node *last;
 
-        if(*head==NULL)
+        if (*head == NULL)
         {
-            t=*head;
+            t = *head;
             return t;
-        }else
+        }
+        else
         {
-            last=*head;
-            while(last->next!=NULL)
+            last = *head;
+            while (last->next != NULL)
             {
-                last=last->next;
+                last = last->next;
             }
-            last->next=t;
-            t->next=NULL;
-            last=t;
+            last->next = t;
+            t->next = NULL;
+            last = t;
             return *head;
         }
+    }
+
+    Node *insertInSort(Node **head, int data)
+    {
+
+        Node *t = new Node();
+        Node *q;
+
+        t->data = data;
+        t->next = NULL;
+
+        Node *p = *head;
+
+        if (p == NULL)
+        {
+            *head = t;
+            return *head;
+        }
+        else
+        {
+            while (p && p->data < data)
+            {
+                q = p;
+                p = p->next;
+            }
+            if (p == *head)
+            {
+                t->next = *head;
+                *head = t;
+            }
+            else
+            {
+                t->next = q->next;
+                q->next = t;
+            }
+            return *head;
+        }
+    }
+
+    Node *Concatlist(Node **head, Node **head2)
+    {
+        Node *first = *head;
+        Node *second = *head2;
+
+        if (first == NULL)
+            return *head2;
+        if (second == NULL)
+            return *head;
+
+        while (first->next != NULL)
+        {
+            first = first->next;
+        }
+        first->next = second;
+        return *head;
+    }
+
+    Node *Merge(Node *head, Node *head2)
+    {
+        Node *last;
+        Node *third;
+        if (head->data < head2->data)
+        {
+            third = last = head;
+            head = head->next;
+            third->next = NULL;
+        }
+        else
+        {
+            third = last = head2;
+            head2 = head2->next;
+            third->next = NULL;
+        }
+
+        while (head && head2)
+        {
+            if (head->data < head2->data)
+            {
+                last->next = head;
+                last = head;
+                head = head->next;
+                last->next = NULL;
+            }
+            else
+            {
+                last->next = head2;
+                last = head2;
+                head2 = head2->next;
+                last->next = NULL;
+            }
+        }
+        if (head)
+            last->next = head;
+        if (head2)
+            last->next = head2;
+
+        return third;
+    }
+
+    bool isLooped(Node *head)
+    {
+
+        Node *slow_p = head, *fast_p = head;
+
+        while (slow_p && fast_p && fast_p->next)
+        {
+            slow_p = slow_p->next;
+            fast_p = fast_p->next->next;
+            if (slow_p == fast_p)
+            {
+                return 1;
+            }
+        }
+        return 0;
+        // unordered_set<Node *> s;
+        // while (head != NULL)
+        // {
+        //     // If this node is already present
+        //     // in hashmap it means there is a cycle
+        //     // (Because you we encountering the
+        //     // node for the second time).
+        //     if (s.find(head) != s.end())
+        //         return true;
+
+        //     // If we are seeing the node for
+        //     // the first time, insert it in hash
+        //     s.insert(head);
+
+        //     head = head->next;
+        // }
+        // return false;
+
+        //     while (h != NULL) {
+        //     // If this node is already traverse
+        //     // it means there is a cycle
+        //     // (Because you we encountering the
+        //     // node for the second time).
+        //     if (h->flag == 1)
+        //         return true;
+
+        //     // If we are seeing the node for
+        //     // the first time, mark its flag as 1
+        //     h->flag = 1;
+
+        //     h = h->next;
+        // }
+
+        // return false;
     }
 };
 
 int main()
 {
     Node *head = NULL;
+
     Node *temp;
     LinkedList l;
     // int A[] = {2, 3, 4, 5, 343, 54};
@@ -244,7 +395,7 @@ int main()
     //simillar to pushing an element into a stack
     l.push(&head, 63);
     l.push(&head, 53);
-    l.push(&head, 43);
+    l.push(&head, 6);
     l.push(&head, 32);
 
     //add's an element to the tail of the linkedList
@@ -274,7 +425,7 @@ int main()
 
     if (temp)
     {
-        cout << "Element present in list element:" << temp->data<<"\n";
+        cout << "Element present in list element:" << temp->data << "\n";
     }
     else
     {
@@ -284,6 +435,43 @@ int main()
     l.insertAtlast(&head, 87);
 
     l.insertAtlast(&head, 56);
+
+    l.printlist(head);
+
+    cout << "Inserting in a sorted linked list \n";
+
+    l.insertInSort(&head, 45);
+
+    l.printlist(head);
+
+    cout << "Deleting a node at a particular position \n";
+
+    l.DeleteNodeat(&head, 3);
+
+    l.printlist(head);
+
+    Node *head2 = NULL;
+
+    l.push(&head2, 12);
+    l.push(&head2, 23);
+    l.push(&head2, 34);
+
+    l.printlist(head2);
+
+    // l.Concatlist(&head, &head2);
+
+    // l.printlist(head);
+
+    // l.Merge(head, head2);
+
+    if (l.isLooped(head))
+    {
+        cout << "the list is looped \n";
+    }
+    else
+    {
+        cout << "the list is not looped \n";
+    }
 
     l.printlist(head);
 
