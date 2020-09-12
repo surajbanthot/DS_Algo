@@ -1,0 +1,17 @@
+ADT of Stacks
+
+Data: 
+Space for storing elements
+Top pointer
+
+operations
+
+push(x)
+pop()
+peek(index)
+stackTop()
+isEmpty()
+isFull()
+
+peek: Index: top-pos+1
+
