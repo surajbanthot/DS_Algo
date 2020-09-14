@@ -111,7 +111,7 @@ char *Stack::InToPost(const char *infix)
     }
     while (top != NULL)
         postfix[j++] = pop();
-    postfix[j] = '\0';
+    postfix[j] = '\0';//ascii value from which postfix value has to be substracted. starting 0=48
     return postfix;
 }
 
