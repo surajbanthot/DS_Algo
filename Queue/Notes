@@ -1,0 +1,18 @@
+Data:
+1. Space for storing elements 
+2. Front - for deletion
+3. Rear - for Insertion
+
+Operations:
+1. enqueue(x);
+dequeue();
+isEmpty();
+isFull();
+first()
+last();
+
+
+Queue Implementation methods:
+1. Array
+2. LinkedList
+
