@@ -15,3 +15,4 @@ isFull()
 
 peek: Index: top-pos+1
 
+Postfix > Infix as the exp. is scanned once and operations are performed 
