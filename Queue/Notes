@@ -16,3 +16,12 @@ Queue Implementation methods:
 1. Array
 2. LinkedList
 
+Queue using Array
+
+1.Queue using Single Pointer
+2.Queue using two Pointer
+
+Reuse of the Queue
+
+1. Resetting the Pointer
+2. Circular Queue
