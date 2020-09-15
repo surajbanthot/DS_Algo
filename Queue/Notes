@@ -25,3 +25,5 @@ Reuse of the Queue
 
 1. Resetting the Pointer
 2. Circular Queue
+
+Use of Mod operator to find the front and rear of a Circular Queue
