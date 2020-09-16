@@ -4,8 +4,10 @@ using namespace std;
 
 class Tree
 {
+    private:
+     Node *root;
     public:
-    Node *root;
+   
     Tree() { root = NULL; }
     void CreateTree();
     void Preorder() { Preorder(root); }
@@ -110,22 +112,34 @@ void Tree::Levelorder(struct Node *root)
 }
 int Tree::Height(struct Node *root)
 {
-    int x = 0, y = 0;
-    if (root == 0)
+    if (root == NULL)
         return 0;
-    x = Height(root->lchild);
-    y = Height(root->rchild);
-    if (x > y)
-        return x + 1;
-    else
-        return y + 1;
+  else
+  {
+      int ldepth=Height(root->lchild);
+      int rdepth=Height(root->rchild);
+
+      if(ldepth>rdepth)
+      return (ldepth+1);
+      else
+      return (rdepth+1);
+  }
+  
 }
 
 int main()
 {
     Tree t;
     t.CreateTree();
-    t.Preorder(t.root);
-    
+    cout<<"Preorder ";
+    t.Preorder();
+    cout<<"\nInorder ";
+    t.Inorder();
+    cout<<"\nPost Order ";
+    t.Postorder();
+    cout<<"\n level Order ";
+    t.Levelorder();
+    int height= t.Height();
+    cout<<"\n Height of Tree "<<height;
     return 0;
 }
