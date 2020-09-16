@@ -62,6 +62,9 @@ public:
             cout << Q[i] << " ";
         cout << "\n";
     }
-    int isEmpty() { return front == rear; }
+     int isEmpty() 
+    { 
+        return front == rear; 
+    }
 };
 #endif
