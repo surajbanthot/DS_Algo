@@ -1,57 +1,67 @@
 #ifndef Queue_h
 #define Queue_h
-#include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-struct Node
+class Node
 {
-    struct Node *lchild;
+public:
+    Node *lchild;
     int data;
-    struct Node *rchild;
+    Node *rchild;
 };
 
-struct Queue
+class Queue
 {
-    int size;
+private:
     int front;
     int rear;
-    struct Node **Q;
+    int size;
+    Node **Q;
+
+public:
+    Queue()
+    {
+        front = rear - 1;
+        size = 10;
+        Q = new Node *[this->size];
+    }
+    Queue(int size)
+    {
+        front = rear = -1;
+        this->size = size;
+        Q = new Node *[this->size];
+    }
+    void enqueue(Node *x)
+    {
+        if (rear == size - 1)
+            cout << "Queue Full\n";
+        else
+        {
+            rear++;
+            Q[rear] = x;
+        }
+    }
+
+    Node *dequeue()
+    {
+        Node *x = NULL;
+        if (front == rear)
+            cout << "Queue is Empty\n";
+        else
+        {
+            x = Q[front + 1];
+            front++;
+        }
+        return x;
+    }
+
+    void Display()
+    {
+        for (int i = front + 1; i <= rear; i++)
+            cout << Q[i] << " ";
+        cout << "\n";
+    }
+    int isEmpty() { return front == rear; }
 };
-
-void create(struct Queue *q, int size)
-{
-    q->size = size;
-    q->front = q->rear = 0;
-    q->Q = (struct Node **)malloc(q->size * sizeof(struct Node *));
-}
-
-void enqueue(struct Queue *q, struct Node *x)
-{
-    if ((q->rear + 1) % q->size == q->front)
-        printf("Queue is full");
-    else
-    {
-        q->rear = (q->rear + 1) % q->size;
-        q->Q[q->rear] = x;
-    }
-}
-
-struct Node *dequeue(struct Queue *q)
-{
-    struct Node *x = NULL;
-    if (q->front == q->rear)
-        printf("Queue is Empty\n");
-    else
-    {
-        q->front = (q->front + 1) % q->size;
-        x = q->Q[q->front];
-    }
-    return x;
-}
-
-int isEmpty(struct Queue q)
-{
-    return q.front == q.rear;
-}
-
 #endif
