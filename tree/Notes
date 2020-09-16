@@ -1,0 +1,59 @@
+Trees:
+1. N nodes has N-1 edges 
+
+Number of Binary Trees:
+
+T(n)=(2n)Cn/(n+1);
+
+Max Height of a Tree with n nodes:
+
+n= 2(n-1)
+
+labeling of Nodes Formula:
+
+T(n)=(2n)Cn/(n+1)*n!;
+
+Min. Nodes: n =h+1;
+
+Max. Nodes: n = 2^(h+1)-1
+
+Min Height: h=log{base}2(n+1)-1
+
+Max. Height: h=n-1
+
+deg(2)=deg(0)+1;
+
+Strict Binary Tree:
+
+Min Height:nodes= 2*height+1;
+Max Height: nodes=2^(h+1)+1
+
+ MIn Height h=log{base}2(n+1)-1
+
+ Max Height h=n-1-2;
+
+ leafNode=(internalNode+1)
+
+ m-ary Trees 
+
+ 1. what are n-ary Tree
+ :tree with max n degree nodes are n-ary tree.
+
+ 2. sTrict 3 ary tree.
+: tree can have zero or 3 degree tree. 
+
+In a Strict m -ary Tree when height is given Min nodes n=mh+1
+
+Max: n=(m^h+1)-1/m-1
+
+ element: i
+ left child: 2*i
+ right child: 2*i+1
+ Parent =i/2;(FLoor value)
+
+
+
+
+
+
+
