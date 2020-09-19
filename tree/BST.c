@@ -25,7 +25,7 @@ void Insert(int key)
     while (t != NULL)
     {
         r = t;
-        if (key < t->data)
+        if (key < t->data)S
             t = t->lchild;
         else if (key > t->data)
             t = t->rchild;
