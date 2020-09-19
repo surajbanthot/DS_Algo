@@ -52,6 +52,12 @@ Max: n=(m^h+1)-1/m-1
  Parent =i/2;(FLoor value)
 
 
+Binary Search Tree: 
+1. No duplicates;
+2. Inorder traversal will give a sorted order.
+3. No of BST for n nodes:
+2nCn/(n+1).
+
 
 
 
