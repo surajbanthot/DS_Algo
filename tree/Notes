@@ -85,3 +85,9 @@ Red-Black Tree
 8. Height in logn<=h<=2logn
 
 
+Heap:
+
+Binary Heap should be a complete binary Tree
+
+Height of a Binary Tree/Heap  is always logn
+
