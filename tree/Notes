@@ -73,6 +73,15 @@ AVL tree:  adelson, Velski , Landis inventors
 
 Rotation is done with only three nodes in AVL Tree. 
 
-1. LL Rotation;
-2. 
+Red-Black Tree
+
+1. Its ar height balanced Binary Search Tree, Similar to 2.3.4 tree
+2. Every Node is either Red or Black
+3. Rott of the tree is Black;
+4. NULL is Black;
+5. NO. of Blacks on Paths from toot to leaf are same
+6. No 2 consecutive Red, Parent and children of red are black;
+7. New Inserted Node is Red/
+8. Height in logn<=h<=2logn
+
 
