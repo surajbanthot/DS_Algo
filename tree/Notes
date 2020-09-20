@@ -60,6 +60,19 @@ Binary Search Tree:
 
 
 
+AVL Tree:
+
+height of tree
+
+balance Factor: height of left subtree -height of right subtree
 
 
+balance of every node should lie between -1, 0 1
+
+AVL tree:  adelson, Velski , Landis inventors
+
+Rotation is done with only three nodes in AVL Tree. 
+
+1. LL Rotation;
+2. 
 
