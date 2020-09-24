@@ -1,19 +1,18 @@
 #ifndef Queue_h
 #define Queue_h
 #include <stdlib.h>
-#include <stdio.h>
 struct Node
 {
     int data;
     struct Node *next;
-} *front = NULL, *rear = NULL;
 
+} *front = NULL, *rear = NULL;
 void enqueue(int x)
 {
-    struct node *t;
+    struct Node *t;
     t = (struct Node *)malloc(sizeof(struct Node));
     if (t == NULL)
-        printf("Queue is Full\n");
+        printf("Queue is FUll\n");
     else
     {
         t->data = x;
@@ -27,11 +26,10 @@ void enqueue(int x)
         }
     }
 }
-
 int dequeue()
 {
     int x = -1;
-    struct Node8 t;
+    struct Node *t;
 
     if (front == NULL)
         printf("Queue is Empty\n");
@@ -44,12 +42,8 @@ int dequeue()
     }
     return x;
 }
-
-
 int isEmpty()
 {
-    return front=NULL;
+    return front == NULL;
 }
-
-#endif
-
+#endif /* Queue_h */
